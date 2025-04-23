@@ -1,10 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<title>&Team sort</title>
-<script type="text/javascript">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&Team sort</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: '돋움', sans-serif;
+      text-align: center;
+      background-color: #ffffff;
+    }
+
+    #mainTable {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    #battleNumber {
+      grid-column: span 3;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    #leftField, #rightField, .middleField {
+      border: 1px solid #000;
+      padding: 20px;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .middleField {
+      cursor: pointer;
+    }
+
+    #resultField {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 0 10px;
+      font-size: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      font-size: 0.9rem;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 5px;
+    }
+
+    th {
+      background-color: #000;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #99ccff;
+    }
+
+    @media (max-width: 480px) {
+      #mainTable {
+        grid-template-columns: 1fr;
+      }
+
+      #leftField, #rightField, .middleField {
+        width: 100%;
+        font-size: 1.2rem;
+      }
+
+      .middleField {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="mainTable">
+    <div id="battleNumber"></div>
+    <div id="leftField" onclick="if(finishFlag==0)sortList(-1);">&nbsp;</div>
+    <div class="middleField" onclick="if(finishFlag==0)sortList(0);">둘 다 좋다</div>
+    <div id="rightField" onclick="if(finishFlag==0)sortList(1);"></div>
+    <div class="middleField" style="grid-column: span 3;" onclick="if(finishFlag==0)sortList(0);">모르겠다</div>
+  </div>
+
+  <div id="resultField">
+    <p><font size="2">(ONE TWO) We Link! こんにちは、&TEAMです!</font></p>
+  </div>
+
+ <script type="text/javascript">
 <!--
 //*********************************************************
 //
@@ -272,145 +371,5 @@ return str;
 }
 //-->
 </script>
-<style type="text/css">
-#mainTable {
-  font-size: 12px;
-  font-family: '돋움', sans-serif;
-  text-align: center;
-  vertical-align: middle;
-  width: 410px;
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: separate;
-  border-spacing: 10px 5px;
-}
-#leftField, #rightField {
-  width: 120px;
-  height: 150px;
-  border: 1px solid #000;
-}
-.middleField {
-  width: 120px;
-  height: 70px;
-  border: 1px solid #000;
-}
-a {
-  text-decoration: none;
-}
-a:hover {
-  color: #99ccff;
-}
-</style>
-
-<meta name="generator" content="Namo WebEditor(Trial)">
-<meta http-equiv="content-type" content="text/html; charset=utf-8"></head>
-
-    body {
-      margin: 0;
-      font-family: '돋움', sans-serif;
-      text-align: center;
-      background-color: #ffffff;
-    }
-
-    #mainTable {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 0 10px;
-    }
-
-    #battleNumber {
-      grid-column: span 3;
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-
-    #leftField, #rightField, .middleField {
-      border: 1px solid #000;
-      padding: 20px;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    #leftField, #rightField {
-      cursor: pointer;
-    }
-
-    .middleField {
-      cursor: pointer;
-    }
-
-    #resultField {
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 0 10px;
-      font-size: 0.9rem;
-    }
-
-    table {
-      width: 100%;
-      font-size: 0.9rem;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      border: 1px solid #000;
-      padding: 5px;
-    }
-
-    th {
-      background-color: #000;
-      color: #fff;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #99ccff;
-    }
-
-    @media (max-width: 480px) {
-      #mainTable {
-        grid-template-columns: 1fr;
-      }
-
-      #leftField, #rightField, .middleField {
-        width: 100%;
-        font-size: 1.2rem;
-      }
-
-      .middleField {
-        margin: 10px 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="mainTable">
-    <div id="battleNumber"></div>
-    <div id="leftField" onclick="if(finishFlag==0)sortList(-1);">&nbsp;</div>
-    <div class="middleField" onclick="if(finishFlag==0)sortList(0);">둘 다 좋다</div>
-    <div id="rightField" onclick="if(finishFlag==0)sortList(1);"></div>
-    <div class="middleField" style="grid-column: span 3;" onclick="if(finishFlag==0)sortList(0);">모르겠다</div>
-  </div>
-
-  <div id="resultField">
-    <p><font size="2">(ONE TWO) We Link! こんにちは、&TEAMです!</font></p>
-  </div>
-<script type="text/javascript">
-<!--
-initList();
-showImage();
-//-->
-</script>
-
 </body>
 </html>
